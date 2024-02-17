@@ -1,0 +1,7 @@
+<div *ngIf="energyStatisticsData.length > 0">
+    <ul>
+        <li *ngFor="let energyStatistic of energyStatisticsData">
+            {{ energyStatistic.energyGenerated }}
+        </li>
+    </ul>
+</div>
