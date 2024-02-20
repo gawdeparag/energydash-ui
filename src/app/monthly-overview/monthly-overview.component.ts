@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-monthly-overview',
@@ -8,14 +8,33 @@ import { Component } from '@angular/core';
 })
 
 // code for the Monthly Overview Component
-export class MonthlyOverviewComponent { 
+export class MonthlyOverviewComponent implements OnInit {
 
-  energyStatisticsData!: any[];
-  constructor(private http: HttpClient) { 
-    // get energy statistics data from http://localhost:8000/energyStatistics/{userId}
-    this.http.get<any>('http://localhost:8000/energyStatistics/{userId}').subscribe((data: any[]) => {
-      this.energyStatisticsData = data;
+  monthlyEnergyConsumed: number = 0;
+  monthlyEnergyGenerated: number = 0;
+  monthlyExportableEnergy: number = 0;
+
+  constructor(private http: HttpClient) { }
+
+  ngOnInit() : void {
+    this.getMonthlyEnergyStatistics();
+  }
+  
+  getMonthlyEnergyStatistics(): any {
+    this.http.get<any>('http://localhost:3000').subscribe((data) => {
+      for (let i = 0; i < data.data.length; i++) {
+        this.monthlyEnergyConsumed += data.data[i].energyConsumed; 
+        this.monthlyEnergyGenerated += data.data[i].energyGenerated;
+        this.monthlyExportableEnergy += data.data[i].exportableEnergy;
+      }
+      return {
+        monthlyEnergyConsumed: this.monthlyEnergyConsumed,
+        monthlyEnergyGenerated: this.monthlyEnergyGenerated,
+        monthlyExportableEnergy: this.monthlyExportableEnergy
+      }
     });
+
+
   }
 
 }

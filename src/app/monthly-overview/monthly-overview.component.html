@@ -1,7 +1,46 @@
-<div *ngIf="energyStatisticsData.length > 0">
+<div class="container">
+    <div class="left-panel">
+
+        <div class="welcome-section">
+
+            <h2>Welcome</h2>
+
+            <h2><b>Naresh Kamble</b></h2>
+        </div>
+    </div>
+
+    <div (load)="getMonthlyEnergyStatistics()" class="right-panel">
+
+        <div class="overview-section">
+
+            <h2>Monthly Overview</h2>
+
+            <p>in kW</p>
+        </div>
+
+        <div class="data-section">
+            Energy Genration<br>
+            <h2><b>{{ monthlyEnergyGenerated }}</b></h2>
+        </div>
+
+        <div class="data-section">
+            Energy Consumption <br>
+            <h2><b>{{monthlyEnergyConsumed}}</b></h2>
+        </div>
+
+        <div class="data-section">
+            Export to Grid <br>
+            <h2><b>{{monthlyExportableEnergy}}</b></h2>
+        </div>
+    </div>
+</div>
+<!-- <div *ngIf="energyStatisticsData.length > 0">
     <ul>
         <li *ngFor="let energyStatistic of energyStatisticsData">
-            {{ energyStatistic.energyGenerated }}
+            Energy Generated: {{ energyStatistic.energyGenerated }}
+            <br> Energy Consumed: {{ energyStatistic.energyConsumed }}
+            <br> Exportable Energy: {{ energyStatistic.exportableEnergy }}
+            <br> Timestamp: {{ energyStatistic.timestamp }}
         </li>
     </ul>
-</div>
+</div> -->

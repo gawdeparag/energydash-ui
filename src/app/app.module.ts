@@ -5,11 +5,13 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MonthlyOverviewComponent } from './monthly-overview/monthly-overview.component';
+import { EnergyChartComponent } from './energy-chart/energy-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MonthlyOverviewComponent
+    MonthlyOverviewComponent,
+    EnergyChartComponent
   ],
   imports: [
     BrowserModule,
